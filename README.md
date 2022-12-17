@@ -1,4 +1,4 @@
-# H1 0x1A. C - Sorting algorithms & Big O
+#H1 0x1A. C - Sorting algorithms & Big O
 
 0. Bubble sort
 Write a function that sorts an array of integers in ascending order using the Bubble sort algorithm
