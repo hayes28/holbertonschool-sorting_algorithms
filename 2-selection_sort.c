@@ -21,28 +21,28 @@ void swap(int *n1, int *n2)
  */
 void selection_sort(int *array, size_t size)
 {
-	unsigned int i, j, x;
-	int min, flag = 0;
+	size_t i = 0, j = 0, index = 0;
+	int tmp = 0;
 
-	if (array == NULL)
+	if (size < 2)
 		return;
-	for (i = 0; i < size - 1; i++)
+	while (i < size -1)
 	{
-		min = array[i];
-		for (j = i; j < size; j++)
+		index = i;
+		tmp = array[i];
+		j = i + 1;
+		while (j < size)
 		{
-			if (array[j] < min)
-			{
-				min = array[j];
-				x = j;
-				flag = 1;
-			}
+			if (array[j] < tmp)
+				tmp = array[j], index = j;
+			j++;
 		}
-		if ((flag == 1) && (j == size - 1))
+		if (index != i)
 		{
-			swap(&array[x], &array[i]);
+			array[index] = array[i];
+			array[i] = tmp;
 			print_array(array, size);
 		}
+		i++;
 	}
-	flag = 0;
 }
