@@ -24,28 +24,28 @@ void swap(int *n1, int *n2)
  */
 int _partition(int *array, ssize_t l, ssize_t h, size_t size)
 {
-	ssize_t i, j;
-	int pivot;
+	int pivot = array[h], tmp = 0, i = l - 1, j = l;
 
-	pivot = array[h];
-	i = l - 1;
-	for (j = l; j < h; j++)
+	while (j <= h - 1)
 	{
-		if (array[j] < pivot)
+		if (array[j] <= pivot)
 		{
 			i++;
+			tmp = array[i];
+			array[i] = array[j];
+			array[j] = tmp;
 			if (i != j)
-			{
-				swap(&array[i], &array[j]);
 				print_array(array, size);
-			}
 		}
+		j++;
 	}
-	if (array[h] < array[i + 1])
-	{
-		swap(&array[i + 1], &array[j]);
-	}
-	return (i + 1);
+	i++;
+	tmp = array[i];
+	array[i] = array[h];
+	array[h] = tmp;
+	if (array[i] != array[h])
+		print_array(array, size);
+	return (i);
 }
 /**
  * lomuto_sch - Lomuto partition scheme.
@@ -56,7 +56,7 @@ int _partition(int *array, ssize_t l, ssize_t h, size_t size)
  */
 void lomuto_sch(int *array, int l, int h, size_t size)
 {
-	int i;
+	int i = 0;
 
 	if (l < h)
 	{
@@ -74,7 +74,7 @@ void lomuto_sch(int *array, int l, int h, size_t size)
  */
 void quick_sort(int *array, size_t size)
 {
-	if (!array || size < 2)
+	if (size < 2)
 		return;
 	lomuto_sch(array, 0, size - 1, size);
 }
